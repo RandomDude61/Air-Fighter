@@ -43,7 +43,7 @@ export default class SkyScene extends Phaser.Scene {
 		const gameHeight = this.scale.height*0.5;
 	    this.add.image(gameWidth, gameHeight, 'background')
 		this.createButton()
-		this.player = this.createPlayer().setScale(0.2) 
+		this.player = this.createPlayer()
 		this.enemies = this.physics.add.group({
 			classType: FallingObject,
 			maxSize: 10,
@@ -95,7 +95,7 @@ export default class SkyScene extends Phaser.Scene {
 
 	//CREATE PLAYER METHOD
 	createPlayer() {
-		const player = this.physics.add.sprite(200, 450, 'player')
+		const player = this.physics.add.sprite(200, 450, 'player').setScale(0.2)
 		player.setCollideWorldBounds(true)
 		return player
 	}
@@ -166,7 +166,7 @@ export default class SkyScene extends Phaser.Scene {
 			rotation: 0.1
 		}
 	
-		const enemy = this.enemies.get(0,0,'enemy',config)
+		const enemy = this.enemies.get(0,0,'enemy',config).setScale(0.15).setFlipY(true)
 		const positionX = Phaser.Math.Between(50, 350)
 		if (enemy) {
 			enemy.spawn(positionX)
